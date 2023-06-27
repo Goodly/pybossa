@@ -263,7 +263,14 @@ def setup_login_manager(app):
     """Setup login manager."""
     login_manager.login_view = 'account.signin'
     login_manager.login_message = "Please sign in to access this page."
-
+    @login_manager.request_loader
+    def load_user_from_request(request):
+        api_key = request.args.get('api_key')
+        if api_key:
+            user = user = user_repo.get_by(api_key=api_key)
+            if user:
+                return user
+        return None
     @login_manager.user_loader
     def _load_user(username):
         return user_repo.get_by_name(username)
