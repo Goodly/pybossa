@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.8-bullseye
 WORKDIR /app
 COPY . /app
 RUN apt-get update && apt-get upgrade -y && apt-get install -y git libpq-dev python3-psycopg2 libsasl2-dev libldap2-dev libssl-dev python3-dev python-dev build-essential libjpeg-dev libssl-dev libffi-dev
