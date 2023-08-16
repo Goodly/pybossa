@@ -22,6 +22,7 @@ app = create_app(run_as_server=False)
 
 def setup_alembic_config():
     alembic_cfg = Config("alembic.ini")
+    alembic_cfg.set_main_option("sqlalchemy.url", os.environ["DATABASE_URL"])
     command.stamp(alembic_cfg, "head")
 
 
