@@ -110,8 +110,8 @@ ENFORCE_PRIVACY = False
 ## Cache setup. By default it is enabled
 ## Redis Sentinel
 # List of Sentinel servers (IP, port)
-REDIS_SENTINEL = [('localhost', 26379)]
-REDIS_MASTER = 'mymaster'
+REDIS_SENTINEL = [(os.environ.get("REDIS_SENTINEL_HOST","localhost"), os.environ.get("REDIS_SENTINEL_PORT",26379))]
+REDIS_MASTER = os.environ.get("REDIS_MASTER_NAME","mymaster")
 REDIS_DB = 0
 REDIS_KEYPREFIX = 'pybossa_cache'
 REDIS_SOCKET_TIMEOUT = None
