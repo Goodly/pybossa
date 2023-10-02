@@ -28,8 +28,15 @@ import os
 ## PORT used for local development, in production environment let nginx handle this
 # PORT = 5000
 
-SECRET = 'foobar'
-SECRET_KEY = 'my-session-secret'
+DEBUG = os.environ.get("PYBOSSA_DEBUG", False)
+
+# webserver host and port
+HOST = os.environ.get("PYBOSSA_HOST", "0.0.0.0")
+PORT = os.environ.get("PYBOSSA_PORT", 5000)
+SERVER_NAME = os.environ.get("PYBOSSA_SERVER_NAME", None)
+
+SECRET = os.environ.get("PYBOSSA_SECRET", "foobar")
+SECRET_KEY = os.environ.get("PYBOSSA_SECRET_KEY", 'my-session-secret')
 
 SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
 SHOW_NAV = True if os.getenv("SHOW_NAV", "False") == "True" else False
@@ -38,7 +45,7 @@ SHOW_NAV = True if os.getenv("SHOW_NAV", "False") == "True" else False
 #    'slave': 'postgresql://user:password@server/db'
 #}
 
-ITSDANGEROUSKEY = 'its-dangerous-key'
+ITSDANGEROUSKEY = os.environ.get("PYBOSSA_ITSDANGEROUS",'its-dangerous-key')
 
 ## project configuration
 BRAND = 'PyBossa'
@@ -283,7 +290,7 @@ LIBSASS_STYLE = 'compressed'
 # NOTE: this is really important, don't use the following one
 # as anyone with the source code of pybossa will be able to reverse
 # the anonymization of the IPs.
-CRYPTOPAN_KEY = '32-char-str-for-AES-key-and-pad.'
+CRYPTOPAN_KEY = os.environ.get("PYBOSSA_CRYPTOPAN_KEY", '32-char-str-for-AES-key-and-pad.')
 
 # TTL for ZIP files of personal data
 TTL_ZIP_SEC_FILES = 3
