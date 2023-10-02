@@ -28,8 +28,7 @@ import os
 ## PORT used for local development, in production environment let nginx handle this
 # PORT = 5000
 
-DEBUG = os.environ.get("PYBOSSA_DEBUG", False)
-
+DEBUG = os.environ.get("PYBOSSA_DEBUG", "False") == "True"
 # webserver host and port
 HOST = os.environ.get("PYBOSSA_HOST", "0.0.0.0")
 PORT = os.environ.get("PYBOSSA_PORT", 5000)
