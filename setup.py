@@ -44,6 +44,7 @@ requirements = [
     "Flask-WTF==0.14.3",
     "flatten-json==0.1.6",
     "google-api-python-client==1.5.5",
+    "gunicorn==21.2.0",
     "html2text==2014.7.3",
     "httplib2==0.19.0",
     "humanize==0.5.1",
