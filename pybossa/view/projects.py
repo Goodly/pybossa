@@ -896,9 +896,14 @@ def presenter(short_name):
         msg = "Oops! You have to sign in to participate in <strong>%s</strong> \
                project" % project.name
         flash(Markup(gettext(msg)), 'warning')
-        return redirect(url_for('account.signin',
+        redirect_url = url_for('account.signin', _external=True,_scheme="https",
+                        next=url_for('.presenter', _external=True,_scheme="https",
+                                     short_name=project.short_name))
+        if current_app.config.get('ENVIRONMENT') == "development":
+            redirect_url = url_for('account.signin',
                         next=url_for('.presenter',
-                                     short_name=project.short_name)))
+                                     short_name=project.short_name))
+        return redirect(redirect_url)
 
     msg = "Ooops! You are an anonymous user and will not \
            get any credit for your contributions. Sign in \
