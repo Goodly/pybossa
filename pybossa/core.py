@@ -40,7 +40,6 @@ from pybossa import util
 def create_app(run_as_server=True):
     """Create web app."""
     app = Flask(__name__)
-    Talisman(app)
     configure_app(app)
     setup_assets(app)
     setup_cache_timeouts(app)
@@ -264,6 +263,8 @@ def setup_logging(app):
 def setup_login_manager(app):
     """Setup login manager."""
     login_manager.login_view = 'account.signin'
+    if app.config.get('ENVIRONMENT') == "production":
+        login_manager.login_view = 'https://pybossa.dev.trainer.publiceditor.io/account/signin'
     login_manager.login_message = "Please sign in to access this page."
     @login_manager.request_loader
     def load_user_from_request(request):

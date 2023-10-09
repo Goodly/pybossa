@@ -39,6 +39,7 @@ SECRET_KEY = os.environ.get("PYBOSSA_SECRET_KEY", 'my-session-secret')
 
 SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
 SHOW_NAV = True if os.getenv("SHOW_NAV", "False") == "True" else False
+ENVIRONMENT = os.environ.get("ENV_NAME", "development")
 ##Slave configuration for DB
 #SQLALCHEMY_BINDS = {
 #    'slave': 'postgresql://user:password@server/db'
