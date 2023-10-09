@@ -34,7 +34,6 @@ from flask_login import current_user
 from flask_babel import gettext
 from flask_assets import Bundle
 from flask_json_multidict import get_json_multidict
-from flask_talisman import Talisman
 from pybossa import default_settings as settings
 from pybossa.extensions import *
 from pybossa.ratelimit import get_view_rate_limit
