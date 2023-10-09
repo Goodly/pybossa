@@ -25,6 +25,7 @@ from flask_login import current_user
 from flask_babel import gettext
 from flask_assets import Bundle
 from flask_json_multidict import get_json_multidict
+from flask_talisman import Talisman
 from pybossa import default_settings as settings
 from pybossa.extensions import *
 from pybossa.ratelimit import get_view_rate_limit
@@ -39,6 +40,7 @@ from pybossa import util
 def create_app(run_as_server=True):
     """Create web app."""
     app = Flask(__name__)
+    Talisman(app)
     configure_app(app)
     setup_assets(app)
     setup_cache_timeouts(app)

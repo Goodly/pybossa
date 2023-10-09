@@ -41,6 +41,7 @@ requirements = [
     "flask-profiler==1.6",
     "Flask-SimpleLDAP>=1.1.2",
     "Flask-SQLAlchemy==2.4.4",
+    "flask-talisman==1.1.0",
     "Flask-WTF==0.14.3",
     "flatten-json==0.1.6",
     "google-api-python-client==1.5.5",
