@@ -1,4 +1,5 @@
 import os
+
 # -*- coding: utf8 -*-
 # This file is part of PyBossa.
 #
@@ -35,28 +36,29 @@ PORT = os.environ.get("PYBOSSA_PORT", 5000)
 SERVER_NAME = os.environ.get("PYBOSSA_SERVER_NAME", None)
 
 SECRET = os.environ.get("PYBOSSA_SECRET", "foobar")
-SECRET_KEY = os.environ.get("PYBOSSA_SECRET_KEY", 'my-session-secret')
+SECRET_KEY = os.environ.get("PYBOSSA_SECRET_KEY", "my-session-secret")
 
 SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
 SHOW_NAV = True if os.getenv("SHOW_NAV", "False") == "True" else False
 ENVIRONMENT = os.environ.get("ENV_NAME", "development")
+PUBLIC_URL = os.environ.get("PYBOSSA_DOMAIN", "localhost")
 ##Slave configuration for DB
-#SQLALCHEMY_BINDS = {
+# SQLALCHEMY_BINDS = {
 #    'slave': 'postgresql://user:password@server/db'
-#}
+# }
 
-ITSDANGEROUSKEY = os.environ.get("PYBOSSA_ITSDANGEROUS",'its-dangerous-key')
+ITSDANGEROUSKEY = os.environ.get("PYBOSSA_ITSDANGEROUS", "its-dangerous-key")
 
 ## project configuration
-BRAND = 'PyBossa'
-TITLE = 'PyBossa'
-LOGO = 'default_logo.svg'
-COPYRIGHT = 'Set Your Institution'
-DESCRIPTION = 'Set the description in your config'
-TERMSOFUSE = 'https://okfn.org/terms-of-use/'
-DATAUSE = 'https://opendatacommons.org/licenses/by/'
-CONTACT_EMAIL = 'info@pybossa.com'
-CONTACT_TWITTER = 'PyBossa'
+BRAND = "PyBossa"
+TITLE = "PyBossa"
+LOGO = "default_logo.svg"
+COPYRIGHT = "Set Your Institution"
+DESCRIPTION = "Set the description in your config"
+TERMSOFUSE = "https://okfn.org/terms-of-use/"
+DATAUSE = "https://opendatacommons.org/licenses/by/"
+CONTACT_EMAIL = "info@pybossa.com"
+CONTACT_TWITTER = "PyBossa"
 
 ## Default number of projects per page
 ## APPS_PER_PAGE = 20
@@ -73,8 +75,8 @@ CONTACT_TWITTER = 'PyBossa'
 ## NOTE: You need to create a symbolic link to the translations folder, otherwise
 ## this wont work.
 ## ln -s pybossa/themes/your-theme/translations pybossa/translations
-#DEFAULT_LOCALE = 'en'
-#LOCALES = [('en', 'English'), ('es', u'Español'),
+# DEFAULT_LOCALE = 'en'
+# LOCALES = [('en', 'English'), ('es', u'Español'),
 #           ('it', 'Italiano'), ('fr', u'Français'),
 #           ('ja', u'日本語'),('pt_BR','Brazilian Portuguese')]
 
@@ -83,8 +85,8 @@ CONTACT_TWITTER = 'PyBossa'
 # ADMINS = ['me@sysadmin.org']
 
 ## CKAN URL for API calls
-#CKAN_NAME = "Demo CKAN server"
-#CKAN_URL = "http://demo.ckan.org"
+# CKAN_NAME = "Demo CKAN server"
+# CKAN_URL = "http://demo.ckan.org"
 
 
 ## logging config
@@ -97,12 +99,12 @@ CONTACT_TWITTER = 'PyBossa'
 # LOG_LEVEL = logging.DEBUG
 
 ## Mail setup
-MAIL_SERVER = 'localhost'
+MAIL_SERVER = "localhost"
 MAIL_USERNAME = None
 MAIL_PASSWORD = None
 MAIL_PORT = 25
 MAIL_FAIL_SILENTLY = False
-MAIL_DEFAULT_SENDER = 'PyBossa Support <info@pybossa.com>'
+MAIL_DEFAULT_SENDER = "PyBossa Support <info@pybossa.com>"
 
 ## Announcement messages
 ## Use any combination of the next type of messages: root, user, and app owners
@@ -117,19 +119,24 @@ ENFORCE_PRIVACY = False
 ## Cache setup. By default it is enabled
 ## Redis Sentinel
 # List of Sentinel servers (IP, port)
-REDIS_SENTINEL = [(os.environ.get("REDIS_SENTINEL_HOST","localhost"), os.environ.get("REDIS_SENTINEL_PORT",26379))]
-REDIS_MASTER = os.environ.get("REDIS_MASTER_NAME","mymaster")
+REDIS_SENTINEL = [
+    (
+        os.environ.get("REDIS_SENTINEL_HOST", "localhost"),
+        os.environ.get("REDIS_SENTINEL_PORT", 26379),
+    )
+]
+REDIS_MASTER = os.environ.get("REDIS_MASTER_NAME", "mymaster")
 REDIS_DB = 0
-REDIS_KEYPREFIX = 'pybossa_cache'
+REDIS_KEYPREFIX = "pybossa_cache"
 REDIS_SOCKET_TIMEOUT = None
 REDIS_RETRY_ON_TIMEOUT = True
 
 ## Allowed upload extensions
-ALLOWED_EXTENSIONS = ['js', 'css', 'png', 'jpg', 'jpeg', 'gif', 'zip']
+ALLOWED_EXTENSIONS = ["js", "css", "png", "jpg", "jpeg", "gif", "zip"]
 
 ## If you want to use the local uploader configure which folder
-UPLOAD_METHOD = 'local'
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_METHOD = "local"
+UPLOAD_FOLDER = "uploads"
 
 ## If you want to use Rackspace for uploads, configure it here
 # RACKSPACE_USERNAME = 'username'
@@ -142,11 +149,12 @@ UPLOAD_FOLDER = 'uploads'
 # PRESENTERS = ["basic", "image", "sound", "video", "map", "pdf"]
 # Default Google Docs spreadsheet template tasks URLs
 TEMPLATE_TASKS = {
-    'image': "https://docs.google.com/spreadsheet/ccc?key=0AsNlt0WgPAHwdHFEN29mZUF0czJWMUhIejF6dWZXdkE&usp=sharing",
-    'sound': "https://docs.google.com/spreadsheet/ccc?key=0AsNlt0WgPAHwdEczcWduOXRUb1JUc1VGMmJtc2xXaXc&usp=sharing",
-    'video': "https://docs.google.com/spreadsheet/ccc?key=0AsNlt0WgPAHwdGZ2UGhxSTJjQl9YNVhfUVhGRUdoRWc&usp=sharing",
-    'map': "https://docs.google.com/spreadsheet/ccc?key=0AsNlt0WgPAHwdGZnbjdwcnhKRVNlN1dGXy0tTnNWWXc&usp=sharing",
-    'pdf': "https://docs.google.com/spreadsheet/ccc?key=0AsNlt0WgPAHwdEVVamc0R0hrcjlGdXRaUXlqRXlJMEE&usp=sharing"}
+    "image": "https://docs.google.com/spreadsheet/ccc?key=0AsNlt0WgPAHwdHFEN29mZUF0czJWMUhIejF6dWZXdkE&usp=sharing",
+    "sound": "https://docs.google.com/spreadsheet/ccc?key=0AsNlt0WgPAHwdEczcWduOXRUb1JUc1VGMmJtc2xXaXc&usp=sharing",
+    "video": "https://docs.google.com/spreadsheet/ccc?key=0AsNlt0WgPAHwdGZ2UGhxSTJjQl9YNVhfUVhGRUdoRWc&usp=sharing",
+    "map": "https://docs.google.com/spreadsheet/ccc?key=0AsNlt0WgPAHwdGZnbjdwcnhKRVNlN1dGXy0tTnNWWXc&usp=sharing",
+    "pdf": "https://docs.google.com/spreadsheet/ccc?key=0AsNlt0WgPAHwdEVVamc0R0hrcjlGdXRaUXlqRXlJMEE&usp=sharing",
+}
 
 # Expiration time for password protected project cookies
 PASSWD_COOKIE_TIMEOUT = 60 * 30
@@ -185,24 +193,26 @@ ACCOUNT_CONFIRMATION_DISABLED = True
 # SSE = False
 
 # Add here any other ATOM feed that you want to get notified.
-NEWS_URL = ['https://github.com/Scifabric/enki/releases.atom',
-            'https://github.com/Scifabric/pybossa-client/releases.atom',
-            'https://github.com/Scifabric/pbs/releases.atom']
+NEWS_URL = [
+    "https://github.com/Scifabric/enki/releases.atom",
+    "https://github.com/Scifabric/pybossa-client/releases.atom",
+    "https://github.com/Scifabric/pbs/releases.atom",
+]
 
 # Pro user features. False will make the feature available to all regular users,
 # while True will make it available only to pro users
 PRO_FEATURES = {
-    'auditlog':              True,
-    'webhooks':              True,
-    'updated_exports':       True,
-    'notify_blog_updates':   True,
-    'project_weekly_report': True,
-    'autoimporter':          True,
-    'better_stats':          True
+    "auditlog": True,
+    "webhooks": True,
+    "updated_exports": True,
+    "notify_blog_updates": True,
+    "project_weekly_report": True,
+    "autoimporter": True,
+    "better_stats": True,
 }
 
 # Libsass style. You can use nested, expanded, compact and compressed
-LIBSASS_STYLE = 'compressed'
+LIBSASS_STYLE = "compressed"
 
 # CORS resources configuration.
 # WARNING: Only modify this if you know what you are doing. The below config
@@ -290,13 +300,15 @@ LIBSASS_STYLE = 'compressed'
 # NOTE: this is really important, don't use the following one
 # as anyone with the source code of pybossa will be able to reverse
 # the anonymization of the IPs.
-CRYPTOPAN_KEY = os.environ.get("PYBOSSA_CRYPTOPAN_KEY", '32-char-str-for-AES-key-and-pad.')
+CRYPTOPAN_KEY = os.environ.get(
+    "PYBOSSA_CRYPTOPAN_KEY", "32-char-str-for-AES-key-and-pad."
+)
 
 # TTL for ZIP files of personal data
 TTL_ZIP_SEC_FILES = 3
 
 # Instruct PYBOSSA to generate HTTP or HTTPS
-PREFERRED_URL_SCHEME='https'
+PREFERRED_URL_SCHEME = "https"
 
 # Instruct PYBOSSA to generate absolute paths or not for avatars
 AVATAR_ABSOLUTE = True
