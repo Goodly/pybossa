@@ -43,7 +43,8 @@ from pybossa.news import FEED_KEY as NEWS_FEED_KEY
 from pybossa.news import get_news
 from pybossa.messages import *
 from pybossa import util
-
+import redis
+import pickle
 
 def create_app(run_as_server=True):
     """Create web app."""
@@ -298,6 +299,17 @@ def setup_login_manager(app):
             user = user = user_repo.get_by(api_key=api_key)
             if user:
                 return user
+        sessionid = request.cookies.get("sessionid")
+        if not sessionid:
+            return None
+        try:
+            r = redis.Redis(host=os.environ.get("REDIS_HOST", "redis"), port=os.environ.get("REDIS_PORT","6379"))
+            email = pickle.loads(r.get(f"DJANGO:1:userid:{sessionid}"))
+            user = user_repo.get_by(email_addr=email)
+            if user:
+                return user
+        except:
+            return None
         return None
 
     @login_manager.user_loader
