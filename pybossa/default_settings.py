@@ -128,7 +128,7 @@ PRO_FEATURES = {
     'better_stats':          True
 }
 
-CORS_RESOURCES = {r"/api/*": {"origins": "*",
+CORS_RESOURCES = {r"*": {"origins": "*",
                               "allow_headers": ['Content-Type',
                                                 'Authorization'],
                               "max_age": 21600
