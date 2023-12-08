@@ -34,6 +34,7 @@ from flask_login import current_user
 from flask_babel import gettext
 from flask_assets import Bundle
 from flask_json_multidict import get_json_multidict
+from flask_cors import CORS
 from pybossa import default_settings as settings
 from pybossa.extensions import *
 from pybossa.ratelimit import get_view_rate_limit
@@ -131,7 +132,7 @@ def setup_json_serializer(app):
 
 
 def setup_cors(app):
-    cors.init_app(app, resources=app.config.get("CORS_RESOURCES"))
+    CORS(app, resources=app.config.get("CORS_RESOURCES"), allow_headers=['Content-Type', 'Authorization', 'X-CSRFToken'], supports_credentials=True,)
 
 
 def setup_sse(app):

@@ -47,8 +47,9 @@ from pybossa.util import redirect_content_type
 from pybossa.util import get_avatar_url
 from pybossa.util import url_for_app_type
 from pybossa.util import fuzzyboolean
-from pybossa.cache import users as cached_users
 from pybossa.auth import ensure_authorized_to
+from pybossa.cache import users as cached_users
+from pybossa.extensions import *
 from pybossa.jobs import send_mail, export_userdata, delete_account
 from pybossa.core import user_repo, ldap
 from pybossa.feed import get_update_feed
@@ -93,6 +94,7 @@ def index(page=1):
 
 
 @blueprint.route('/signin', methods=['GET', 'POST'])
+@csrf.exempt
 def signin():
     """
     Signin method for PYBOSSA users.

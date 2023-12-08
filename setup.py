@@ -30,7 +30,7 @@ requirements = [
     "Flask==1.1.2",
     "Flask-Assets==0.12",
     "Flask-Babel>=0.9",
-    "Flask-Cors>=3.0.2",
+    "Flask-Cors>=4.0.0",
     "Flask-DebugToolbar==0.10.1",
     "Flask-HTTPAuth>=3.2.4",
     "flask-json-multidict>=1.0.0",

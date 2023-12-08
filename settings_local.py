@@ -218,11 +218,13 @@ LIBSASS_STYLE = "compressed"
 # WARNING: Only modify this if you know what you are doing. The below config
 # are the defaults, allowing PYBOSSA to have full CORS api.
 # For more options, check the Flask-Cors documentation: https://flask-cors.readthedocs.io/en/latest/
-# CORS_RESOURCES = {r"/api/*": {"origins": "*",
-#                               "allow_headers": ['Content-Type',
-#                                                 'Authorization'],
-#                               "methods": "*"
-#                               }}
+CORS_RESOURCES = {r"/*": {"origins": "*",
+                              "allow_headers": ['Content-Type', 'Authorization', 'X-CSRFToken'],
+                              "methods": "*",
+                              "supports_credentials": True,
+                              }}
+# CORS_ORIGINS = [r'localhost', r'publiceditor.io']
+# CORS_RESOURCES = r'/*'
 
 # Email notifications for background jobs.
 # FAILED_JOBS_MAILS = 7

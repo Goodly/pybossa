@@ -128,11 +128,19 @@ PRO_FEATURES = {
     'better_stats':          True
 }
 
-CORS_RESOURCES = {r"*": {"origins": "*",
-                              "allow_headers": ['Content-Type',
-                                                'Authorization'],
-                              "max_age": 21600
+# CORS_SEND_WILDCARD = True
+# CORS_SUPPORTS_CREDENTIALS = True
+CORS_RESOURCES = {r"/*": {"origins": "*",
+                              "allow_headers": ['Content-Type', 'Authorization', 'X-CSRFToken'],
+                              "methods": "*",
+                              "supports_credentials": True,
                               }}
+
+# CORS_RESOURCES = {r"/*": {"origins": "*",
+#                               "allow_headers": ['Content-Type',
+#                                                 'Authorization'],
+#                               "max_age": 21600
+#                               }}
 
 FAILED_JOBS_RETRIES = 3
 FAILED_JOBS_MAILS = 7

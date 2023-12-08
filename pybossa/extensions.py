@@ -36,7 +36,6 @@ The objects are:
 from pybossa.anonymizer import Anonymizer
 import flask_profiler
 from flask_simpleldap import LDAP
-from flask_cors import CORS
 from speaklater import _LazyString
 from flask.json import JSONEncoder as BaseEncoder
 from flask_assets import Environment
@@ -56,7 +55,7 @@ __all__ = ['sentinel', 'db', 'signer', 'mail', 'login_manager',
            'csrf', 'timeouts', 'ratelimits', 'user_repo', 'project_repo',
            'task_repo', 'announcement_repo', 'blog_repo', 'auditlog_repo', 'webhook_repo',
            'result_repo', 'newsletter', 'importer',
-           'plugin_manager', 'assets', 'JSONEncoder', 'cors', 'ldap',
+           'plugin_manager', 'assets', 'JSONEncoder', 'ldap',
            'flask_profiler', 'anonymizer']
 
 # CACHE
@@ -131,9 +130,6 @@ class JSONEncoder(BaseEncoder):  # pragma: no cover
 
         return BaseEncoder.default(self, o)
 
-
-# CORS
-cors = CORS()
 
 # Strong password
 enable_strong_password = None
