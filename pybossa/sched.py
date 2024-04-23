@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with PYBOSSA.  If not, see <http://www.gnu.org/licenses/>.
 """Scheduler module for PYBOSSA tasks."""
+import random
 from functools import wraps
 from werkzeug.exceptions import Forbidden, BadRequest
 from sqlalchemy.sql import func, desc, text
@@ -43,12 +44,14 @@ def new_task(project_id, sched, user_id=None, user_ip=None,
              external_uid=None, offset=0, limit=1, orderby='priority_0', desc=True):
     """Get a new task by calling the appropriate scheduler function."""
     sched_map = {
-        'default': get_depth_first_task,
+        'default': get_random_task,
         'breadth_first': get_breadth_first_task,
         'depth_first': get_depth_first_task,
         'incremental': get_incremental_task,
         'depth_first_all': get_depth_first_all_task,
-        'locked': get_locked_task}
+        'locked': get_locked_task,
+        'random': get_random_task
+    }
     scheduler = sched_map.get(sched, sched_map['default'])
     return scheduler(project_id, user_id, user_ip, external_uid, offset=offset, limit=limit, orderby=orderby, desc=desc)
 
@@ -105,6 +108,16 @@ def get_breadth_first_task(project_id, user_id=None, user_ip=None,
     data = query.limit(limit).offset(offset).all()
     return _handle_tuples(data)
 
+
+def get_random_task(project_id, user_id=None, user_ip=None,
+                         external_uid=None, offset=0, limit=1,
+                         orderby='priority_0', desc=True):
+    """Get a new task for a given project."""
+    tasks = get_candidate_task_ids(project_id, user_id,
+                                   user_ip, external_uid, 10, offset,
+                                   orderby=orderby, desc=desc)
+    random.shuffle(tasks)
+    return tasks[:limit]
 
 def get_depth_first_task(project_id, user_id=None, user_ip=None,
                          external_uid=None, offset=0, limit=1,
@@ -281,7 +294,8 @@ def sched_variants():
     return [('default', 'Default'), ('breadth_first', 'Breadth First'),
             ('depth_first', 'Depth First'),
             ('depth_first_all', 'Depth First All'),
-            ('locked', 'Locked')
+            ('locked', 'Locked'),
+            ('random', 'Random')
             ]
 
 

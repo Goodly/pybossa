@@ -245,6 +245,7 @@ def otpvalidation(token):
 
 
 @blueprint.route('/signout')
+@csrf.exempt
 def signout():
     """
     Signout PYBOSSA users.
