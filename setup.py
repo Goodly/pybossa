@@ -83,7 +83,7 @@ requirements = [
     "otpauth==1.0.1",
     "pandas==1.2.3",
     "pbr>=1.10.0",
-    "Pillow>=6.2.0",
+    "Pillow==9.5.0",
     "prettytable==0.7.2",
     "psycopg2-binary>=2.7.6.1",
     "pyasn1==0.4.5",
